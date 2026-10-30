@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirmação de Recebimento de EPI | SST · HU Brasil</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --az: #1a2744; --azm: #1a3a6c; --azc: #e8f0fb;
+  --vr: #c0392b; --vrc: #fdf0ef; --vrb: #f5c6c3;
+  --vd: #1a5c33; --vc: #eaf5ec;
+  --bg: #eef1f5; --bd: #dde1e7; --mt: #6b7280;
+  --tx: #1a1d23; --br: #ffffff;
+  --r: 8px; --sh: 0 1px 4px rgba(0,0,0,0.07);
+  --f: 'IBM Plex Sans',sans-serif; --m: 'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column}
+
+/* Barra topo */
+.barra-topo{height:3px;background:linear-gradient(90deg,#c0392b,#e74c3c);flex-shrink:0}
+
+/* Header */
+.header{background:var(--az);color:#fff;flex-shrink:0;padding:0}
+.header-inner{max-width:640px;margin:0 auto;padding:0 24px;display:flex;align-items:center;min-height:56px;gap:14px}
+.h-ico{width:48px;height:48px;background:#fff;border-radius:6px;padding:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.15);box-shadow:0 1px 2px rgba(0,0,0,0.15)}
+.h-ico img{height:100%;width:100%;object-fit:contain}
+.h-titulo{flex:1}
+.h-tit{font-size:15px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.h-sub{font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;font-family:var(--m)}
+
+/* Conteúdo */
+.main{max-width:640px;margin:0 auto;padding:28px 24px;flex:1;width:100%}
+
+/* Intro */
+.intro{background:var(--br);border:1px solid var(--bd);border-radius:var(--r);
+  box-shadow:var(--sh);padding:22px 24px;margin-bottom:20px;line-height:1.65}
+.intro h2{font-size:16px;font-weight:700;color:var(--az);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.intro p{font-size:13px;color:var(--mt);margin-bottom:6px}
+.intro .destaque{font-size:12px;color:var(--azm);background:var(--azc);border:1px solid #b8ccf0;
+  border-left:4px solid var(--azm);border-radius:var(--r);padding:10px 14px;margin-top:12px;line-height:1.6}
+
+/* Card formulário */
+.card{background:var(--br);border:1px solid var(--bd);border-radius:var(--r);
+  box-shadow:var(--sh);overflow:hidden;margin-bottom:20px}
+.card-title{background:var(--az);color:#fff;padding:10px 20px;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.card-title::before{content:'';width:8px;height:8px;background:var(--vr);border-radius:50%;flex-shrink:0}
+.card-body{padding:22px 24px}
+
+/* Campos */
+.fg{margin-bottom:16px}
+.fg label{font-size:11px;font-weight:600;color:var(--mt);text-transform:uppercase;
+  letter-spacing:.06em;display:block;margin-bottom:5px}
+.fg input,.fg select{padding:11px 14px;border:1px solid var(--bd);border-radius:6px;
+  font-size:14px;font-family:var(--f);color:var(--tx);background:var(--br);
+  transition:border .15s;width:100%;outline:none;appearance:none;-webkit-appearance:none}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.fg input:focus,.fg select:focus{border-color:var(--azm);box-shadow:0 0 0 3px rgba(26,58,108,0.1)}
+.fg input::placeholder{color:#b0b5bf}
+.fg .hint{font-size:11px;color:var(--mt);margin-top:4px}
+
+/* Termo de declaração */
+.termo-box{background:var(--vc);border:1px solid #b8dcc5;border-radius:var(--r);
+  padding:14px 16px;margin-bottom:18px;line-height:1.6}
+.termo-box label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12.5px;color:var(--tx)}
+.termo-box input[type="checkbox"]{margin-top:3px;width:16px;height:16px;flex-shrink:0;accent-color:var(--vd);cursor:pointer}
+.termo-texto{font-size:12px;color:var(--mt);margin-top:6px;padding-left:26px;line-height:1.5}
+
+/* Botão */
+.btn-confirmar{width:100%;padding:14px 20px;border-radius:8px;font-size:15px;font-weight:700;
+  cursor:pointer;border:none;font-family:var(--f);transition:all .15s;
+  background:var(--vd);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;
+  letter-spacing:.02em}
+.btn-confirmar:hover{background:#144726;transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,92,51,0.25)}
+.btn-confirmar:active{transform:scale(.98)}
+.btn-confirmar:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Feedback */
+.feedback{display:none;text-align:center;padding:30px 20px}
+.feedback.ok .ico{font-size:48px;margin-bottom:12px}
+.feedback.ok h3{font-size:18px;font-weight:700;color:var(--vd);margin-bottom:8px}
+.feedback.ok p{font-size:13px;color:var(--mt);max-width:360px;margin:0 auto;line-height:1.6}
+.feedback.err h3{color:var(--vr)}
+
+/* Hash comprovante */
+.comprovante{margin-top:16px;background:#f8fafc;border:1px dashed var(--bd);border-radius:6px;padding:12px 16px;text-align:left}
+.comprovante .hash-label{font-size:10px;font-weight:700;color:var(--mt);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.comprovante .hash-valor{font-family:var(--m);font-size:13px;font-weight:600;color:var(--az);letter-spacing:.05em;word-break:break-all}
+.comprovante .hash-hint{font-size:10px;color:var(--mt);margin-top:6px;line-height:1.4}
+
+/* Rodapé */
+.rod{background:var(--az);color:rgba(255,255,255,0.4);text-align:center;
+  padding:12px;font-size:10px;font-family:var(--m);border-top:3px solid var(--vr);
+  flex-shrink:0;letter-spacing:.04em}
+
+/* Spinner */
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);
+  border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Responsivo */
+@media(max-width:480px){
+  .main{padding:18px 16px}
+  .intro{padding:18px 18px}
+  .card-body{padding:18px 18px}
+  .fg input{font-size:16px} /* evita zoom no iOS */
+}
+</style>
+</head>
+<body>
+
+<div class="barra-topo"></div>
+<div class="header">
+  <div class="header-inner">
+    <div class="h-ico"><img src="logo_hul.jpg" alt="HU Lagarto"></div>
+    <div class="h-titulo">
+      <div class="h-tit">Confirmação de Recebimento de EPI</div>
+      <div class="h-sub">USOST · HU Lagarto · EBSERH</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Introdução -->
+  <div class="intro">
+    <h2>&#128737; Sobre esta página</h2>
+    <p>
+      Este formulário serve para <b>confirmar o recebimento</b> de Equipamentos de Proteção Individual (EPI)
+      solicitados pela Unidade de Saúde Ocupacional e Segurança do Trabalho (USOST).
+    </p>
+    <p>
+      Ao receber o EPI de reposição, preencha os campos abaixo com seus dados e o
+      <b>código de confirmação</b> que foi enviado junto com o e-mail de solicitação.
+    </p>
+    <div class="destaque">
+      <b>Por que preciso confirmar?</b><br>
+      O registro de recebimento é uma exigência da NR-06 (item 6.6.1) e permite que a USOST
+      mantenha atualizado o controle de fornecimento de EPI, garantindo a rastreabilidade
+      e a proteção do empregado e da instituição.
+    </div>
+  </div>
+
+  <!-- Formulário -->
+  <div class="card" id="cardForm">
+    <div class="card-title">Dados de Confirmação</div>
+    <div class="card-body">
+      <div class="fg">
+        <label>Nome completo</label>
+        <input type="text" id="inpNome" placeholder="Digite seu nome completo" autocomplete="name">
+      </div>
+      <div class="fg">
+        <label>SIAPE</label>
+        <input type="text" id="inpSiape" placeholder="Seu número SIAPE" inputmode="numeric" maxlength="10" autocomplete="off">
+        <div class="hint">Apenas números. Encontre no seu contracheque ou crachá.</div>
+      </div>
+      <div class="fg">
+        <label>EPI recebido</label>
+        <select id="inpEpi" onchange="toggleOutroEpi()">
+          <option value="Óculos de Segurança">Óculos de Segurança</option>
+          <option value="Respirador PFF2/N95">Respirador PFF2/N95</option>
+          <option value="outro">Outro EPI</option>
+        </select>
+      </div>
+      <div class="fg" id="fgOutroEpi" style="display:none">
+        <label>Qual EPI?</label>
+        <input type="text" id="inpOutroEpi" placeholder="Informe o nome do EPI recebido">
+      </div>
+      <div class="fg">
+        <label>Código de confirmação</label>
+        <input type="text" id="inpCodigo" placeholder="Ex: 3561" maxlength="20" autocomplete="off" style="font-family:var(--m);letter-spacing:.1em">
+        <div class="hint">Código de 4 dígitos enviado no e-mail de solicitação de reposição.</div>
+      </div>
+
+      <!-- Termo de Declaração -->
+      <div class="termo-box" id="termoBox">
+        <label>
+          <input type="checkbox" id="chkTermo">
+          <span>Declaro que <b>recebi o Equipamento de Proteção Individual (EPI)</b> indicado acima e estou ciente da <b>obrigatoriedade de uso</b> durante as atividades laborais, conforme estabelecido na NR-06 (item 6.7.1, alínea "b").</span>
+        </label>
+        <div class="termo-texto">
+          Esta declaração possui valor documental e será registrada com data, hora e informações do dispositivo utilizado para fins de rastreabilidade e auditoria.
+        </div>
+      </div>
+
+      <button class="btn-confirmar" id="btnConfirmar" onclick="enviarConfirmacao()">
+        &#10003; Confirmar Recebimento
+      </button>
+    </div>
+  </div>
+
+  <!-- Feedback: sucesso -->
+  <div class="feedback ok" id="feedbackOk">
+    <div class="ico">&#9989;</div>
+    <h3>Recebimento confirmado!</h3>
+    <p>
+      Seu registro foi enviado com sucesso para a USOST.
+      Caso precise fazer outra confirmação, <a href="#" onclick="novaConfirmacao();return false;" style="color:var(--azm);font-weight:600;">clique aqui</a>.
+    </p>
+    <div style="margin-top:16px;font-size:12px;color:var(--mt);background:var(--azc);border-radius:6px;padding:10px 14px;text-align:left;">
+      <b>Resumo:</b><br>
+      <span id="resumoNome"></span><br>
+      <span id="resumoSiape"></span><br>
+      <span id="resumoEpi"></span><br>
+      <span id="resumoCodigo"></span><br>
+      <span id="resumoData"></span>
+    </div>
+    <!-- Comprovante com hash de verificação -->
+    <div class="comprovante" id="comprovante">
+      <div class="hash-label">Código de verificação</div>
+      <div class="hash-valor" id="hashValor"></div>
+      <div class="hash-hint">Guarde este código como comprovante. Ele pode ser utilizado pela USOST para verificar a autenticidade desta confirmação.</div>
+    </div>
+  </div>
+
+  <!-- Feedback: erro -->
+  <div class="feedback err" id="feedbackErr">
+    <div class="ico" style="font-size:48px">&#9888;&#65039;</div>
+    <h3>Erro ao enviar</h3>
+    <p id="errMsg" style="color:var(--vr)">Verifique sua conexão e tente novamente.</p>
+    <button class="btn-confirmar" onclick="novaConfirmacao()" style="margin-top:16px;max-width:300px;margin-left:auto;margin-right:auto;background:var(--azm)">
+      Tentar novamente
+    </button>
+  </div>
+
+</div>
+
+<div class="rod">SST · HU Brasil — Confirmação de Recebimento de EPI · 2026</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   CONFIRMAÇÃO DE RECEBIMENTO DE EPI
+   Envia nome, SIAPE, código, data/hora, declaração e metadados
+   do dispositivo para o Google Sheets via Google Apps Script.
+   ══════════════════════════════════════════════════════════════ */
+
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxYdggS0oPHIIUGUkoyyLtsi4_fLEPEFMv8Jlyif_YjTCYaOHNyAVnljYKYT94qqL0H/exec';
+
+function toggleOutroEpi(){
+  var sel = document.getElementById('inpEpi');
+  var div = document.getElementById('fgOutroEpi');
+  div.style.display = sel.value === 'outro' ? 'block' : 'none';
+  if(sel.value === 'outro'){
+    document.getElementById('inpOutroEpi').focus();
+  }
+}
+
+function getEpiSelecionado(){
+  var sel = document.getElementById('inpEpi');
+  if(sel.value === 'outro'){
+    return (document.getElementById('inpOutroEpi').value || '').trim();
+  }
+  return sel.value;
+}
+
+/* ── Gera hash de verificação ── */
+function gerarHash(nome, siape, epi, codigo, dataHora){
+  /* Hash simples baseado nos dados da confirmação */
+  var str = nome + '|' + siape + '|' + epi + '|' + codigo + '|' + dataHora;
+  var hash = 0;
+  for(var i = 0; i < str.length; i++){
+    var ch = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + ch;
+    hash = hash & hash; /* 32bit integer */
+  }
+  var hex = Math.abs(hash).toString(16).toUpperCase().padStart(8,'0').slice(0,8);
+  /* Formato: HUL-SIAPE-DATA-HASH */
+  var dataAbrev = dataHora.replace(/[^0-9]/g,'').slice(0,8); /* DDMMYYYY */
+  return 'HUL-' + siape + '-' + dataAbrev + '-' + hex;
+}
+
+/* ── Coleta metadados do dispositivo ── */
+function coletarMetadados(){
+  var meta = {
+    userAgent: navigator.userAgent || '',
+    idioma: navigator.language || '',
+    plataforma: navigator.platform || '',
+    tela: screen.width + 'x' + screen.height,
+    corProfundidade: screen.colorDepth + 'bit',
+    fusoHorario: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+    online: navigator.onLine
+  };
+  return meta;
+}
+
+function enviarConfirmacao(){
+  var nome   = (document.getElementById('inpNome').value || '').trim();
+  var siape  = (document.getElementById('inpSiape').value || '').trim().replace(/\D/g, '');
+  var epi    = getEpiSelecionado();
+  var codigo = (document.getElementById('inpCodigo').value || '').trim();
+  var termo  = document.getElementById('chkTermo').checked;
+
+  /* Validação básica */
+  if(!nome){
+    sacudir('inpNome');
+    return;
+  }
+  if(!siape || siape.length < 5){
+    sacudir('inpSiape');
+    return;
+  }
+  if(!epi){
+    sacudir('inpOutroEpi');
+    return;
+  }
+  if(!codigo){
+    sacudir('inpCodigo');
+    return;
+  }
+  if(!termo){
+    sacudirTermo();
+    return;
+  }
+
+  if(!APPS_SCRIPT_URL){
+    alert('URL do Apps Script não configurada. Contate a USOST.');
+    return;
+  }
+
+  /* Desabilita botão e mostra spinner */
+  var btn = document.getElementById('btnConfirmar');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Enviando...';
+
+  var agora = new Date();
+  var dataHora = agora.toLocaleString('pt-BR');
+
+  /* Gera hash de verificação */
+  var hashVerificacao = gerarHash(nome, siape, epi, codigo, dataHora);
+
+  /* Coleta metadados do dispositivo */
+  var metadados = coletarMetadados();
+
+  var payload = {
+    nome:     nome,
+    siape:    siape,
+    epi:      epi,
+    codigo:   codigo,
+    dataHora: dataHora,
+    declaracao: 'Declaro que recebi o EPI indicado e estou ciente da obrigatoriedade de uso conforme NR-06, item 6.7.1, alínea b.',
+    hash:     hashVerificacao,
+    userAgent: metadados.userAgent,
+    plataforma: metadados.plataforma,
+    tela:     metadados.tela,
+    fusoHorario: metadados.fusoHorario
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(){
+    mostrarSucesso(nome, siape, epi, codigo, dataHora, hashVerificacao);
+  })
+  .catch(function(err){
+    mostrarErro('Não foi possível enviar: ' + (err.message || 'verifique sua conexão.'));
+  });
+}
+
+function mostrarSucesso(nome, siape, epi, codigo, dataHora, hash){
+  document.getElementById('cardForm').style.display = 'none';
+  document.getElementById('feedbackErr').style.display = 'none';
+  var fb = document.getElementById('feedbackOk');
+  fb.style.display = 'block';
+
+  document.getElementById('resumoNome').textContent   = 'Nome: ' + nome;
+  document.getElementById('resumoSiape').textContent  = 'SIAPE: ' + siape;
+  document.getElementById('resumoEpi').textContent    = 'EPI: ' + epi;
+  document.getElementById('resumoCodigo').textContent = 'Código: ' + codigo;
+  document.getElementById('resumoData').textContent   = 'Data/Hora: ' + dataHora;
+
+  /* Exibe hash de verificação */
+  document.getElementById('hashValor').textContent = hash;
+}
+
+function mostrarErro(msg){
+  document.getElementById('cardForm').style.display = 'none';
+  document.getElementById('feedbackOk').style.display = 'none';
+  var fb = document.getElementById('feedbackErr');
+  fb.style.display = 'block';
+  document.getElementById('errMsg').textContent = msg;
+}
+
+function novaConfirmacao(){
+  document.getElementById('feedbackOk').style.display = 'none';
+  document.getElementById('feedbackErr').style.display = 'none';
+  document.getElementById('cardForm').style.display = 'block';
+
+  document.getElementById('inpNome').value = '';
+  document.getElementById('inpSiape').value = '';
+  document.getElementById('inpCodigo').value = '';
+  document.getElementById('chkTermo').checked = false;
+
+  var btn = document.getElementById('btnConfirmar');
+  btn.disabled = false;
+  btn.innerHTML = '&#10003; Confirmar Recebimento';
+}
+
+/* Efeito visual de erro no campo */
+function sacudir(id){
+  var el = document.getElementById(id);
+  el.style.borderColor = '#c0392b';
+  el.style.background = '#fdf0ef';
+  el.focus();
+  setTimeout(function(){
+    el.style.borderColor = '';
+    el.style.background = '';
+  }, 1500);
+}
+
+/* Efeito visual de erro no termo */
+function sacudirTermo(){
+  var box = document.getElementById('termoBox');
+  box.style.borderColor = '#c0392b';
+  box.style.background = '#fdf0ef';
+  setTimeout(function(){
+    box.style.borderColor = '';
+    box.style.background = '';
+  }, 2000);
+}
+</script>
+
+</body>
+</html>
